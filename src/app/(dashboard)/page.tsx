@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Metadata } from 'next'
 
 export default function DashboardPage() {
@@ -33,22 +33,24 @@ export default function DashboardPage() {
         setIsLoading(true)
 
         try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    prompt: inputText,
-                    agent: selectedAgent
-                }),
-            })
+            // Simulate AI response (client-side only for static export)
+            await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000))
 
-            const data = await response.json()
+            const selectedAgentData = agents.find(a => a.id === selectedAgent)
+            const agentName = selectedAgentData?.name || 'AI Assistant'
+
+            const responses = {
+                general: `🤖 Hello! I'm your General AI Assistant. I received your message: "${inputText}". I'm here to help with various tasks and questions. How can I assist you further?`,
+                code: `💻 Code Assistant here! I analyzed your request: "${inputText}". I can help with programming, debugging, code review, and technical solutions. What specific coding challenge can I help solve?`,
+                football: `⚽ Football AI reporting! Regarding "${inputText}" - I specialize in match analysis, player statistics, team performance, and predictions. What football insights would you like?`,
+                research: `🔬 Research Assistant activated! I've noted your query: "${inputText}". I can help with fact-checking, data analysis, academic research, and information gathering. What would you like me to investigate?`,
+                creative: `🎨 Creative Assistant here! Your input "${inputText}" has sparked some ideas. I can help with creative writing, design concepts, brainstorming, and artistic projects. What shall we create?`,
+                business: `🏢 Business Advisor ready! Analyzing "${inputText}" from a strategic perspective. I can assist with business planning, market analysis, strategy development, and growth opportunities. What business challenge are we tackling?`
+            }
 
             const aiMessage = {
                 id: (Date.now() + 1).toString(),
-                text: data.response || 'I received your message! The AI system is processing your request.',
+                text: responses[selectedAgent as keyof typeof responses] || responses.general,
                 sender: 'ai' as const,
                 timestamp: new Date()
             }
@@ -98,8 +100,8 @@ export default function DashboardPage() {
                                         key={agent.id}
                                         onClick={() => setSelectedAgent(agent.id)}
                                         className={`w-full text-left p-3 rounded-lg transition-colors ${selectedAgent === agent.id
-                                                ? 'bg-blue-100 border-2 border-blue-500'
-                                                : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent'
+                                            ? 'bg-blue-100 border-2 border-blue-500'
+                                            : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent'
                                             }`}
                                     >
                                         <div className="flex items-center space-x-3">
@@ -151,8 +153,8 @@ export default function DashboardPage() {
                                         >
                                             <div
                                                 className={`max-w-[80%] p-3 rounded-lg ${message.sender === 'user'
-                                                        ? 'bg-blue-600 text-white'
-                                                        : 'bg-gray-100 text-gray-900'
+                                                    ? 'bg-blue-600 text-white'
+                                                    : 'bg-gray-100 text-gray-900'
                                                     }`}
                                             >
                                                 <p className="whitespace-pre-wrap">{message.text}</p>

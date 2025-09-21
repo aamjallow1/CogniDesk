@@ -42,6 +42,10 @@ const nextConfig = {
     images: {
         unoptimized: true
     },
+    // Disable CSS optimization for deployment
+    experimental: {
+        cssChunking: false
+    },
 }
 
 module.exports = nextConfig
