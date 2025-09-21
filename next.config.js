@@ -6,14 +6,12 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
-    experimental: {
-        serverComponentsExternalPackages: [
-            'handlebars',
-            'dotprompt',
-            '@genkit-ai/core',
-            'genkit'
-        ]
-    },
+    serverExternalPackages: [
+        'handlebars',
+        'dotprompt',
+        '@genkit-ai/core',
+        'genkit'
+    ],
     webpack: (config) => {
         config.resolve.fallback = {
             ...config.resolve.fallback,
@@ -38,8 +36,12 @@ const nextConfig = {
 
         return config;
     },
-    // Firebase App Hosting compatibility
-    output: 'standalone',
+    // Firebase hosting compatibility
+    output: 'export',
+    trailingSlash: true,
+    images: {
+        unoptimized: true
+    },
 }
 
 module.exports = nextConfig

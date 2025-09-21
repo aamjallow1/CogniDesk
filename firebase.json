@@ -4,18 +4,13 @@
         "indexes": "firestore.indexes.json"
     },
     "hosting": {
-        "public": ".next/standalone",
+        "public": "out",
         "ignore": [
             "firebase.json",
             "**/.*",
-            "**/node_modules/**",
-            "**/.next/cache/**"
+            "**/node_modules/**"
         ],
         "rewrites": [
-            {
-                "source": "/api/**",
-                "function": "cognideskApi"
-            },
             {
                 "source": "**",
                 "destination": "/index.html"
