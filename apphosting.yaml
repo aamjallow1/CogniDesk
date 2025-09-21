@@ -1,0 +1,28 @@
+# Firebase App Hosting configuration
+runConfig:
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+
+env:
+  - variable: NODE_ENV
+    value: production
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: studio-7308845117-ec2b2
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: 1:745224953184:web:b07106875a19c2dc00d205
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: AIzaSyAJOEvpyoR9pEH_mhR126A84RqagezCez4
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: studio-7308845117-ec2b2.firebaseapp.com
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: studio-7308845117-ec2b2.firebasestorage.app
+
+# Build configuration for Next.js
+build:
+  commands:
+    - npm install
+    - npm run build
+  outputDir: .next

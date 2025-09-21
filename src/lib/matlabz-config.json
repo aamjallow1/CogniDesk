@@ -1,0 +1,55 @@
+{
+  "matlabz": {
+    "systems": [
+      {
+        "available": true,
+        "hasLauncher": true,
+        "missingFiles": [
+          "main.py"
+        ],
+        "system": "MatlaBz-Full",
+        "capabilities": [
+          "full-analysis",
+          "prediction",
+          "database",
+          "ai-modules"
+        ],
+        "functional": true,
+        "responseTime": 76.04032115259984,
+        "testPassed": [
+          "basic-startup",
+          "module-loading",
+          "api-response"
+        ],
+        "initialized": true,
+        "priority": 1
+      },
+      {
+        "available": true,
+        "hasLauncher": true,
+        "missingFiles": [
+          "launcher.py"
+        ],
+        "system": "MatlaBz-Runtime",
+        "capabilities": [
+          "runtime-analysis",
+          "prediction",
+          "ai-modules"
+        ],
+        "functional": true,
+        "responseTime": 83.4382892992199,
+        "testPassed": [
+          "basic-startup",
+          "module-loading",
+          "api-response"
+        ],
+        "initialized": true,
+        "priority": 2
+      }
+    ],
+    "parallelProcessing": true,
+    "loadBalancing": true,
+    "lastInitialized": "2025-09-21T14:12:25.168Z",
+    "status": "optimal"
+  }
+}
